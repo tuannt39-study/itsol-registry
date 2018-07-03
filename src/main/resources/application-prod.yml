@@ -1,0 +1,14 @@
+spring:
+    devtools:
+        restart:
+            enabled: true
+    cloud:
+        config:
+            name: itsol-registry
+            label: master
+            server:
+                git:
+                    uri: https://gitlab.com/tuannt39/spring-cloud-config.git
+                    username: demo
+                    password: demo
+                prefix: /config

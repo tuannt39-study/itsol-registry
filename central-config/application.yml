@@ -1,0 +1,13 @@
+configserver:
+    name: Itsol Registry config server
+    status: Connected to the Itsol Registry config server!
+
+jhipster:
+    security:
+        authentication:
+            jwt:
+                secret: 707ea06c246cb384bf574d4e35cfe5f5b0cd378a
+
+logging:
+    path: /tmp
+    file: ${spring.application.name}.log

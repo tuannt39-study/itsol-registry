@@ -1,0 +1,29 @@
+spring:
+    application:
+        name: itsol-registry
+
+server:
+    port: 8761
+    ssl:
+        key-store: keystore.p12
+        key-store-password: ItsolRegistry
+        keyStoreType: PKCS12
+        keyAlias: ItsolRegistry
+
+logging:
+    file: target/itsol-registry.log
+
+management:
+    endpoints:
+        web:
+            base-path: /management
+            exposure:
+                include: ["configprops", "env", "health", "info", "threaddump", "logfile"]
+    endpoint:
+        health:
+            show-details: when_authorized
+        shutdown:
+            enabled: true
+    health:
+        mail:
+            enabled: false
