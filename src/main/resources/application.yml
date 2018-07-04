@@ -27,3 +27,32 @@ management:
     health:
         mail:
             enabled: false
+
+eureka:
+    instance:
+        hostname: localhost-com
+        appname: itsol-registry
+        instanceId: itsolRegistry:${spring.application.instance-id:${random.value}}
+        prefer-ip-address: true
+        lease-renewal-interval-in-seconds: 5
+        lease-expiration-duration-in-seconds: 10
+        status-page-url-path: ${management.endpoints.web.base-path}/info
+        health-check-url-path: ${management.endpoints.web.base-path}/health
+        metadata-map:
+            zone: primary
+            profile: ${spring.profiles.active}
+            version: ${info.project.version}
+    client:
+        enabled: true
+        fetch-registry: false
+        register-with-eureka: false
+        instance-info-replication-interval-seconds: 10
+        registry-fetch-interval-seconds: 10
+        service-url:
+            defaultZone: https://${eureka.instance.hostname}:${server.port}/eureka/
+    server:
+        enable-self-preservation: true
+    dashboard:
+        path: /registry
+    datacenter: Itsol-DataCenter
+    environment: Itsol-Environment

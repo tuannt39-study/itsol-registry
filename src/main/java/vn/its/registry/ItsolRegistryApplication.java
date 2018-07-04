@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.config.server.EnableConfigServer;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 import org.springframework.core.env.Environment;
 import vn.its.registry.config.DefaultProfileUtil;
 import vn.its.registry.config.ItsolConstants;
@@ -14,6 +15,7 @@ import java.net.InetAddress;
 import java.util.Arrays;
 import java.util.Collection;
 
+@EnableEurekaServer
 @EnableConfigServer
 @SpringBootApplication
 public class ItsolRegistryApplication {
@@ -50,15 +52,18 @@ public class ItsolRegistryApplication {
         }
         log.info("\n----------------------------------------------------------\n\t" +
                 "Application '{}' is running! Access URLs:\n\t" +
-                "Local: \t\t{}://localhost:{}\n\t" +
-                "External: \t{}://{}:{}\n\t" +
+                "Local: \t\t{}://{}:{}{}\n\t" +
+                "External: \t{}://{}:{}{}\n\t" +
                 "Profile(s): \t{}\n----------------------------------------------------------",
             env.getProperty("spring.application.name"),
             protocol,
+            env.getProperty("eureka.instance.hostname"),
             env.getProperty("server.port"),
+            env.getProperty("eureka.dashboard.path"),
             protocol,
             hostAddress,
             env.getProperty("server.port"),
+            env.getProperty("eureka.dashboard.path"),
             env.getActiveProfiles());
     }
 
