@@ -1,6 +1,11 @@
 spring:
     application:
         name: itsol-registry
+    security:
+        user:
+            name: admin
+            password: admin
+            roles: USER,ADMIN
 
 server:
     port: 8761
